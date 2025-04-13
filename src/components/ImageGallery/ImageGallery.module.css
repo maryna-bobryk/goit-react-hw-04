@@ -1,0 +1,40 @@
+.galleryWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gallery {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+.galleryItem {
+  max-width: 300px;
+  width: 100%;
+  height: 200px;
+
+  border: 1px solid #a9a8a8;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Verhindert das Überlaufen des Bildes */
+  display: flex;
+  align-items: center; /* Zentriert das Bild vertikal */
+  justify-content: center; /* Zentriert das Bild horizontal */
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.galleryImage {
+  width: 100%; /* Das Bild nimmt die volle Breite des Containers ein */
+  height: 100%; /* Das Bild nimmt die gesamte Höhe des Containers ein */
+  object-fit: cover; /* Das Bild wird skaliert und zugeschnitten, um den Container auszufüllen */
+  object-position: center;
+}
