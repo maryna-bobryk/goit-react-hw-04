@@ -3,15 +3,11 @@
   flex-wrap: wrap;
   gap: 16px;
   justify-content: center;
+  align-items: center;
   margin-bottom: 20px;
-  object-fit: cover;
 }
 
 .galleryItem {
-  width: calc((100% - 48px) / 4);
-  height: 200px;
-  overflow: hidden;
-  object-fit: cover;
   object-fit: cover;
   border-radius: 6px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
