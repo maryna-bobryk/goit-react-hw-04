@@ -7,17 +7,18 @@ const HEADERS = {
   Authorization: `Client-ID ${API_KEY}`,
 };
 
-export const fetchImages = async query => {
+export const fetchImages = async (query, page) => {
   const params = {
     query: query || '',
     per_page: 20,
+    page: page,
   };
 
   const response = await axios.get(BASE_URL, { headers: HEADERS, params });
-  return response.data.results;
+  return { results: response.data.results, totalPages: response.data.total_pages };
 };
 
 // export const fetchImages = async query => {
-//   const response = await axios.get(`https://api.unsplash.com/photos/client_id=xKVC0BScZ4sS_BSkussmJx6Plk_JCfdA5L8ssu6X3rI?query=${query}`);
+//   const response = await axios.get(`https://api.unsplash.com/photos/client_id=xKVC0BScZ4sS_BSkussmJx6Plk_JCfdA5L8ssu6X3rI?query=${query}&page=${page}`);
 //   return response.data.results;
 // };

@@ -1,0 +1,86 @@
+/* ImageModal.module.css */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.wrapper {
+  background-color: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  border: none;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.imageWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.modalImage {
+  width: auto;
+  max-height: 600px;
+  object-fit: contain;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.closeButton {
+  bottom: 24px;
+  right: 24px;
+  max-width: 120px;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: inherit;
+  color: azure;
+  background-color: #8d99ae;
+  transition: background-color;
+
+  &:hover {
+    background-color: #646cff;
+  }
+}
+
+.description {
+  font-size: 16px;
+  font-weight: 600;
+}
+ul > li:last-child {
+  margin-top: 20px;
+}
+
+.downloadWrapper {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+}
+
+.downloadLink {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: #ffffff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    color: #0056b3;
+  }
+}
