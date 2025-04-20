@@ -8,6 +8,7 @@ import ImageModal from './components/ImageModal/ImageModal';
 import Modal from 'react-modal';
 import toast, { Toaster } from 'react-hot-toast';
 import './App.css';
+import ErrorMessage from './components/ErrorMessage/ErrorMessage';
 
 function App() {
   const [images, setImages] = useState([]);
@@ -20,24 +21,19 @@ function App() {
   const [activeImage, setActiveImage] = useState(null);
 
   useEffect(() => {
-    if (!query) return;
     const getData = async () => {
       try {
+        if (!query) return;
         setLoading(true);
         const data = await fetchImages(query, page); //results: response.data.results, total_pages: response.total_pages
         setImages(prev => [...prev, ...data.results]);
         setTotalPages(data.totalPages);
 
         if (data.results.length === 0) {
-          toast.error('No results. Try a different search.', {
-            className: 'toastError',
-          });
+          toast.error('No results. Try a different search.');
         }
       } catch (error) {
-        console.error(error);
         setError(true);
-
-        toast.error('Well, that didn’t work. Wanna try again later?');
       } finally {
         setLoading(false);
       }
@@ -75,7 +71,8 @@ function App() {
   return (
     <>
       <SearchBar handleChangeQuery={handleChangeQuery} />
-      {images.length > 0 && <ImageGallery images={images} openModal={openModal} />}
+      {images.length > 0 && !error && <ImageGallery images={images} openModal={openModal} />}
+      {error && <ErrorMessage />}
       <ImageModal isOpen={isOpen} closeModal={closeModal} image={activeImage} />
       {loading && <Loader loading={loading} />}
       {page < totalPages && !loading && <LoadMoreBtn handleLoadMoreBtn={handleLoadMoreBtn} />}

@@ -1,5 +1,6 @@
 import s from './SearchBar.module.css';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
+import toast from 'react-hot-toast';
 import * as Yup from 'yup';
 
 const SearchBar = ({ handleChangeQuery }) => {
@@ -8,7 +9,11 @@ const SearchBar = ({ handleChangeQuery }) => {
   };
 
   const handleSubmit = (values, options) => {
-    handleChangeQuery(values.query);
+    const trimValue = values.query.trim();
+    if (trimValue === '') {
+      toast.error('The search field must not be empty.');
+    }
+    handleChangeQuery(trimValue);
     options.resetForm();
   };
 
@@ -21,7 +26,7 @@ const SearchBar = ({ handleChangeQuery }) => {
     <div className={s.form}>
       <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={applySchema}>
         <Form>
-          <Field name='query' className={s.formInput} autoComplete='off' autoFocus placeholder='Search images and photos' />
+          <Field name='query' className={s.formInput} type='text' autoComplete='off' autoFocus placeholder='Search images and photos' />
           <ErrorMessage name='query' component='div' className={s.errorMessage} />
           <button className={s.formBtn} type='submit'>
             Search
