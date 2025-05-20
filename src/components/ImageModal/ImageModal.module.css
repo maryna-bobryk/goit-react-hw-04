@@ -58,6 +58,7 @@
 .description {
   font-size: 16px;
   font-weight: 600;
+  color: #141414;
 }
 ul > li:last-child {
   margin-top: 20px;

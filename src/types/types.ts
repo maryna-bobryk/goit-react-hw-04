@@ -3,3 +3,4 @@ export enum ToastMessages {
   ApiError = 'Ooops... Try again later.',
   EmptySearch = 'The search field must not be empty.',
 }
+
