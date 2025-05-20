@@ -1,6 +1,11 @@
+import React, { FC } from 'react';
 import s from './LoadMoreBtn.module.css';
 
-const LoadMoreBtn = ({ handleLoadMoreBtn }) => {
+interface LoadMoreBtnProps {
+  handleLoadMoreBtn: () => void;
+}
+
+const LoadMoreBtn: FC<LoadMoreBtnProps> = ({ handleLoadMoreBtn }) => {
   return (
     <div>
       <button onClick={handleLoadMoreBtn} className={s.loadMoreBtn}>

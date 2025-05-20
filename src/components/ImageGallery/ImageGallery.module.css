@@ -5,35 +5,37 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
+  padding: 0;
+  list-style: none;
 }
 
 .galleryItem {
   width: calc((100% - 48px) / 4);
-  height: 200px;
+  max-height: 200px;
   overflow: hidden;
-  object-fit: cover;
-  object-fit: cover;
   border-radius: 6px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  transition: transform 0.3s ease;
+}
 
-  &:hover {
-    transform: scale(1.05);
+.galleryItem:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 1024px) {
+  .galleryItem {
+    width: calc((100% - 48px) / 3);
   }
+}
 
-  & {
-    @media (max-width: 1024px) {
-      width: calc((100% - 32px) / 3);
-    }
+@media (max-width: 768px) {
+  .galleryItem {
+    width: calc((100% - 16px) / 2);
+  }
+}
 
-    @media (max-width: 768px) {
-      width: calc((100% - 16px) / 2);
-    }
-
-    @media (max-width: 480px) {
-      width: 100%;
-    }
+@media (max-width: 480px) {
+  .galleryItem {
+    width: 100%;
   }
 }

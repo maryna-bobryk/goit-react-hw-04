@@ -1,14 +1,18 @@
 import { DotLoader } from 'react-spinners';
 
-const Loader = ({ loading }) => {
+interface LoaderProps {
+  loading: boolean;
+}
+
+const Loader = ({ loading }: LoaderProps) => {
   return (
     <div>
       <DotLoader
         color='#f96c00'
         size={32}
         speedMultiplier={1}
+        loading
         cssOverride={{
-          loading,
           display: 'block',
           margin: '20px auto',
           padding: '10px',

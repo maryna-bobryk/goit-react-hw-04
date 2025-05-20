@@ -1,14 +1,20 @@
-import Modal from 'react-modal';
+import React, { FC } from 'react';
 import s from './ImageModal.module.css';
+import Modal from 'react-modal';
 import { useEffect } from 'react';
+import { UnsplashImage } from '../../services/api.types';
 
 Modal.setAppElement('#root');
 
-const ImageModal = ({ isOpen, closeModal, image }) => {
-  // const { url, alt, name, description, location, portfolio } = image || {};
+interface ImageModalProps {
+  image: UnsplashImage | null;
+  isOpen: boolean;
+  closeModal: () => void;
+}
 
+const ImageModal: FC<ImageModalProps> = ({ isOpen, closeModal, image }) => {
   useEffect(() => {
-    const handleKeyDown = e => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') closeModal();
     };
     document.addEventListener('keydown', handleKeyDown);
@@ -24,9 +30,7 @@ const ImageModal = ({ isOpen, closeModal, image }) => {
       </div>
       <ul className={s.list}>
         <li className={s.item}>
-          <p className={s.description}>
-            Author: {image?.user.first_name} {image?.user.last_name}
-          </p>
+          <p className={s.description}>Author: {image?.user.name}</p>
         </li>
         <li className={s.item}>
           <p className={s.description}>Description: {image?.alt_description}</p>

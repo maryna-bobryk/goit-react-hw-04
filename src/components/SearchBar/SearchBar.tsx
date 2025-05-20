@@ -1,17 +1,28 @@
+import React, { FC } from 'react';
 import s from './SearchBar.module.css';
-import { ErrorMessage, Field, Form, Formik } from 'formik';
+import { ErrorMessage, Formik, FormikHelpers, Form, Field } from 'formik';
 import toast from 'react-hot-toast';
 import * as Yup from 'yup';
+import { ToastMessages } from '../../types/types';
 
-const SearchBar = ({ handleChangeQuery }) => {
+interface SearchBarProps {
+  handleChangeQuery: (query: string) => void;
+}
+
+interface FormValues {
+  query: string;
+}
+
+const SearchBar: FC<SearchBarProps> = ({ handleChangeQuery }) => {
   const initialValues = {
     query: '',
   };
 
-  const handleSubmit = (values, options) => {
+  const handleSubmit = (values: FormValues, options: FormikHelpers<FormValues>) => {
     const trimValue = values.query.trim();
     if (trimValue === '') {
-      toast.error('The search field must not be empty.');
+      toast.error(ToastMessages.EmptySearch);
+      return;
     }
     handleChangeQuery(trimValue);
     options.resetForm();
@@ -19,7 +30,7 @@ const SearchBar = ({ handleChangeQuery }) => {
 
   const applySchema = () =>
     Yup.object().shape({
-      query: Yup.string().max(30, 'Too Long!'),
+      query: Yup.string().trim().min(2, 'Too short').max(20, 'Too long'),
     });
 
   return (
